@@ -5,7 +5,6 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
-require("scripts/globals/utils");
 
 ---------------------------------------------------
 
@@ -14,8 +13,7 @@ function onAbilityCheck(player, target, ability)
 end;
 
 function onPetAbility(target, pet, skill, summoner)
-    local bonusTime = utils.clamp(summoner:getSkillLevel(SKILL_SUM) - 300, 0, 200);
-    local duration = 120 + bonusTime;
+    local duration = 60 + 2 * summoner:getMod(MOD_SUMMONING);
 
     local magicskill = getSkillLvl(1, target:getMainLvl());
 

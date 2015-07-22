@@ -5,7 +5,6 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
-require("scripts/globals/utils");
 
 ---------------------------------------------------
 
@@ -14,10 +13,8 @@ function onAbilityCheck(player, target, ability)
 end;
 
 function onPetAbility(target, pet, skill, summoner)
-    local bonusTime = utils.clamp(summoner:getSkillLevel(SKILL_SUM) - 300, 0, 200);
-    local duration = 60 + bonusTime;
-
-    target:addStatusEffect(EFFECT_WARCRY,9,0,duration);
-    skill:setMsg(MSG_BUFF);
-    return EFFECT_WARCRY;
+	local duration = 30 + summoner:getMod(MOD_SUMMONING);
+	target:addStatusEffect(EFFECT_WARCRY,9,0,duration);
+	skill:setMsg(MSG_BUFF);
+	return EFFECT_WARCRY;
 end
